@@ -73,7 +73,7 @@ const Index = () => {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Sparkles className="w-8 h-8 text-primary" />
               <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                GIF Explorer Hub
+                Buscardor de imagenes Gifs 🎨
               </h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -119,7 +119,7 @@ const Index = () => {
       </div>
 
       {/* Results Section */}
-      <div className="container mx-auto px-4 pb-16">
+      <div className="container mx-auto px-4 pb-16 pt-16">
         {searchQuery && (
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">
