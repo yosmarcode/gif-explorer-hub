@@ -63,7 +63,7 @@ export const searchGifs = async (params: SearchParams): Promise<{ gifs: GifData[
     throw new Error('API_KEY_REQUIRED');
   }
 
-  const { q, limit = 25, offset = 0, rating = 'g', lang = 'es' } = params;
+  const { q, limit = 100, offset = 0, rating = 'g', lang = 'es' } = params;
   
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${encodeURIComponent(q)}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`;
 
@@ -86,7 +86,7 @@ export const searchGifs = async (params: SearchParams): Promise<{ gifs: GifData[
   }
 };
 
-export const getTrendingGifs = async (limit: number = 25): Promise<GifData[]> => {
+export const getTrendingGifs = async (limit: number = 100): Promise<GifData[]> => {
   if (GIPHY_API_KEY === 'demo_api_key') {
     throw new Error('API_KEY_REQUIRED');
   }
