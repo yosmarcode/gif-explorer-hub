@@ -2,27 +2,23 @@ import { useState, useEffect } from "react";
 import { SearchBar } from "@/components/SearchBar";
 import { GifGrid } from "@/components/GifGrid";
 import { GifModal } from "@/components/GifModal";
-import { ApiKeyInput } from "@/components/ApiKeyInput";
+
 import { GifData } from "@/components/GifCard";
-import { searchGifs, getTrendingGifs, getGiphyApiKey } from "@/services/giphyApi";
+import { searchGifs, getTrendingGifs } from "@/services/giphyApi";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Zap, TrendingUp, Sparkles } from "lucide-react";
+import { TrendingUp, Sparkles } from "lucide-react";
 
 const Index = () => {
   const [gifs, setGifs] = useState<GifData[]>([]);
   const [selectedGif, setSelectedGif] = useState<GifData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasApiKey, setHasApiKey] = useState(false);
+  
   const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   useEffect(() => {
-    const savedKey = localStorage.getItem('giphy_api_key');
-    if (savedKey) {
-      setHasApiKey(true);
-      loadTrendingGifs();
-    }
+    loadTrendingGifs();
   }, []);
 
   const loadTrendingGifs = async () => {
@@ -55,37 +51,17 @@ const Index = () => {
         });
       }
     } catch (error: any) {
-      if (error.message === 'API_KEY_REQUIRED') {
-        toast({
-          title: "API Key requerida",
-          description: "Por favor, ingresa tu API key de GIPHY",
-          variant: "destructive",
-        });
-        setHasApiKey(false);
-      } else {
-        toast({
-          title: "Error de búsqueda",
-          description: "Ocurrió un error al buscar GIFs. Intenta de nuevo.",
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "Error de búsqueda",
+        description: "Ocurrió un error al buscar GIFs. Intenta de nuevo.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleApiKeySet = () => {
-    setHasApiKey(true);
-    loadTrendingGifs();
-    toast({
-      title: "¡Perfecto!",
-      description: "API key configurada correctamente. ¡Comencemos a explorar!",
-    });
-  };
 
-  if (!hasApiKey) {
-    return <ApiKeyInput onApiKeySet={handleApiKeySet} />;
-  }
 
   return (
     <div className="min-h-screen bg-background">

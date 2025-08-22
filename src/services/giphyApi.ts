@@ -2,7 +2,7 @@ import { GifData } from "@/components/GifCard";
 
 // NOTA: Nunca subas tu API key real al código fuente
 // Esta es solo para demostración - usa variables de entorno en producción
-let GIPHY_API_KEY = 'demo_api_key'; // Placeholder
+let GIPHY_API_KEY = 'IuQIXMoNiwyzTi4LAtzU0JjElvcl7r8b'; // Public client key
 
 interface GiphyResponse {
   data: any[];
