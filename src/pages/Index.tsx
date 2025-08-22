@@ -41,7 +41,7 @@ const Index = () => {
     setIsLoading(true);
     setSearchQuery(query);
     try {
-      const result = await searchGifs({ q: query, limit: 25 });
+      const result = await searchGifs({ q: query, limit: 100 });
       setGifs(result.gifs);
       
       if (result.gifs.length === 0) {
